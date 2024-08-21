@@ -18,8 +18,8 @@ class SupportCastTableViewCell: UITableViewCell
     @IBOutlet var footerView: UIView!              // Footer view of the cell
     @IBOutlet var assignStatusLabel: UILabel!      // Label for displaying the assignment status
     @IBOutlet var assigneDistanceLabel: UILabel!   // Label for displaying the distance of the assignee
-    
     @IBOutlet var assigneStatusButton: UIButton!
+    @IBOutlet var assigneeNumberlabel: UILabel!
     
     override func awakeFromNib() 
     {

@@ -11,12 +11,16 @@ class ViewController: UIViewController {
     
     @IBOutlet var tableview: UITableView!
     var cellHeights: [Int: CGFloat] = [0: 100, 1: 100] // Dictionary to track the heights of each section
-    
+    var isSupportCastCollapsed: Bool = false // State variable to track the collapse state
     override func viewDidLoad() {
         super.viewDidLoad()
         // Register the custom cell nib files with the table view
         tableview.register(UINib(nibName: "RescuerHistoryTableViewCell", bundle: nil), forCellReuseIdentifier: "RescuerHistoryTableViewCell")
         tableview.register(UINib(nibName: "SupportCastTableViewCell", bundle: nil), forCellReuseIdentifier: "SupportCastTableViewCell")
+        //HeaderTableViewCell
+        tableview.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "HeaderTableViewCell")
+        //FoundRescueeTableViewCell
+        tableview.register(UINib(nibName: "FoundRescueeTableViewCell", bundle: nil), forCellReuseIdentifier: "FoundRescueeTableViewCell")
         tableview.rowHeight = UITableView.automaticDimension
     }
 }
@@ -27,10 +31,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 4 // Number of rows in the Support Cast section
+            return 1
         case 1:
-            return 1 // Number of rows in the Current Rescuer section
+            return isSupportCastCollapsed ? 1 : 5
         case 2:
+            return 1 // Number of rows in the Current Rescuer section
+        case 3:
             return 2 // Number of rows in the Rescuer History section
         default:
             return 1 // Default number of rows if section is out of bounds
@@ -38,39 +44,45 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     // Return the number of sections
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3 // Total number of sections
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 4 // Total number of sections
     }
     
     // Configure and return a cell for a given index path
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            // Configure and return SupportCastTableViewCell
+            let FoundRescueeCell = tableView.dequeueReusableCell(withIdentifier: "FoundRescueeTableViewCell", for: indexPath) as! FoundRescueeTableViewCell
+            return FoundRescueeCell
+        case 1:
             let supportCastCell = tableView.dequeueReusableCell(withIdentifier: "SupportCastTableViewCell", for: indexPath) as! SupportCastTableViewCell
-            
-            // Assign different states and colors based on the cell index
-            switch indexPath.row {
-            case 0:
-                supportCastCell.updateCellUi(assigneState: "Reassigned", name: "Back Anthony", Relation: "Uncle")
-            case 1:
-                supportCastCell.updateCellUi(assigneState: "Alerted", name: "Derik John", Relation: "Brother")
-            case 2:
-                supportCastCell.updateCellUi(assigneState: "Pending", name: "Mason Jose", Relation: "Friend")
-            case 3:
-                supportCastCell.updateCellUi(assigneState: "Accepted", name: "Derik John", Relation: "Brother")
-            default:
+            supportCastCell.assigneeNumberlabel.text = String(indexPath.row+1)
+            if isSupportCastCollapsed {
+                // Show only the "Accepted" cell and hide others
                 supportCastCell.updateCellUi(assigneState: "Accepted", name: "Back Anthony", Relation: "Uncle")
+            } else {
+                switch indexPath.row {
+                case 0:
+                    supportCastCell.updateCellUi(assigneState: "Reassigned", name: "Back Anthony", Relation: "Uncle")
+                case 1:
+                    supportCastCell.updateCellUi(assigneState: "Alerted", name: "Derik John", Relation: "Brother")
+                case 2:
+                    supportCastCell.updateCellUi(assigneState: "Pending", name: "Mason Jose", Relation: "Friend")
+                case 3:
+                    supportCastCell.updateCellUi(assigneState: "Accepted", name: "Derik John", Relation: "Brother")
+                default:
+                    supportCastCell.updateCellUi(assigneState: "Accepted", name: "Back Anthony", Relation: "Uncle")
+                }
             }
             return supportCastCell
             
-        case 1:
+        case 2:
             // Configure and return RescuerHistoryTableViewCell
             let currentRescuerCell = tableView.dequeueReusableCell(withIdentifier: "RescuerHistoryTableViewCell", for: indexPath) as! RescuerHistoryTableViewCell
             currentRescuerCell.messageLabel.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
             return currentRescuerCell
-            
-        case 2:
+        case 3:
             // Configure and return RescuerHistoryTableViewCell with custom styling
             let rescuerHistoryCell = tableView.dequeueReusableCell(withIdentifier: "RescuerHistoryTableViewCell", for: indexPath) as! RescuerHistoryTableViewCell
             
@@ -103,40 +115,49 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 ])
             }
             return rescuerHistoryCell
-            
         default:
             return UITableViewCell() // Return a default cell if section is out of bounds
         }
+  
+        
     }
     
     // Return the height of the header for each section
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 42 // Hide header for section 0, show for others
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        if section == 0
+        {
+            return 0
+        }
+        else
+        {
+            return  42 // Hide header for section 0, show for others
+        }
     }
     
     // Create and return a custom view for the header of each section
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let title: String
-        
-        // Set the title based on the section
-        switch section {
-        case 0:
-            title = "Support Cast"
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {// Configure the header view
+        switch section
+        {
         case 1:
-            title = "Current Rescuer"
+            let SupportCastheaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+            SupportCastheaderView.hideAndShowDetailsButton.addTarget(self, action: #selector(hideBtnAction(sender:)), for: .touchUpInside)
+            SupportCastheaderView.isHidden = false
+            return SupportCastheaderView
         case 2:
-            title = "Rescuer History"
+            let CurrentRescuerHeaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+            CurrentRescuerHeaderView.headerTitleLabel.text = "CurrentRescuer"
+            return CurrentRescuerHeaderView
+        case 3:
+            let RescuerHistoryHeaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+            RescuerHistoryHeaderView.headerTitleLabel.text = "Rescuer History"
+            return RescuerHistoryHeaderView
         default:
-            title = "Section \(section)"
+            return UITableViewCell()
         }
-        
-        // Create and return the header view with the title and toggle button
-        return createHeaderView(title: title, tableViewWidth: tableView.frame.width, section: section)
     }
-    // Add this new method to disable floating headers
-      func tableView(_ tableView: UITableView, shouldFloatHeaderForSection section: Int) -> Bool {
-          return false // This disables floating headers for all sections
-      }
+    
     
     // Return the height of each row
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -145,6 +166,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController {
+    
+    @objc func hideBtnAction(sender: UIButton) {
+        // Toggle the collapse state
+        isSupportCastCollapsed.toggle()
+        
+        // Reload the Support Cast section (section 0)
+        tableview.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
     
     // Toggle the height of the specified section when the button is tapped
     @objc func toggleSectionHeight(_ sender: UIButton) {
@@ -159,7 +188,6 @@ extension ViewController {
         tableview.beginUpdates()
         tableview.endUpdates() // This animates the height change
     }
-    
     // Create and configure a custom header view with a title and a toggle button
     func createHeaderView(title: String, tableViewWidth: CGFloat, section: Int) -> UIView {
         let headerView = UIView()

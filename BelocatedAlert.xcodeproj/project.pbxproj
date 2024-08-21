@@ -19,6 +19,8 @@
 		8DAC849F2C7456A400564032 /* SupportCastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC849C2C7456A300564032 /* SupportCastTableViewCell.swift */; };
 		8DEB1A452C75A1C200699332 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB1A432C75A1C200699332 /* HeaderTableViewCell.swift */; };
 		8DEB1A462C75A1C200699332 /* HeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB1A442C75A1C200699332 /* HeaderTableViewCell.xib */; };
+		8DEB1A492C75C4A300699332 /* FoundRescueeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB1A472C75C4A300699332 /* FoundRescueeTableViewCell.swift */; };
+		8DEB1A4A2C75C4A300699332 /* FoundRescueeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DEB1A482C75C4A300699332 /* FoundRescueeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		8DAC849D2C7456A300564032 /* SupportCastTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportCastTableViewCell.xib; sourceTree = "<group>"; };
 		8DEB1A432C75A1C200699332 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8DEB1A442C75A1C200699332 /* HeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderTableViewCell.xib; sourceTree = "<group>"; };
+		8DEB1A472C75C4A300699332 /* FoundRescueeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundRescueeTableViewCell.swift; sourceTree = "<group>"; };
+		8DEB1A482C75C4A300699332 /* FoundRescueeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoundRescueeTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +78,12 @@
 				8D04BE6C2C732D2E0001825F /* RescuerHistoryTableViewCell.swift */,
 				8DAC849C2C7456A300564032 /* SupportCastTableViewCell.swift */,
 				8DEB1A432C75A1C200699332 /* HeaderTableViewCell.swift */,
+				8DEB1A472C75C4A300699332 /* FoundRescueeTableViewCell.swift */,
 				8D04BE5E2C7328920001825F /* Main.storyboard */,
 				8D04BE6D2C732D2E0001825F /* RescuerHistoryTableViewCell.xib */,
 				8DAC849D2C7456A300564032 /* SupportCastTableViewCell.xib */,
 				8DEB1A442C75A1C200699332 /* HeaderTableViewCell.xib */,
+				8DEB1A482C75C4A300699332 /* FoundRescueeTableViewCell.xib */,
 				8D04BE612C7328940001825F /* Assets.xcassets */,
 				8D04BE632C7328940001825F /* LaunchScreen.storyboard */,
 				8D04BE662C7328940001825F /* Info.plist */,
@@ -148,6 +154,7 @@
 				8D04BE652C7328940001825F /* Base in Resources */,
 				8D04BE6E2C732D2E0001825F /* RescuerHistoryTableViewCell.xib in Resources */,
 				8DEB1A462C75A1C200699332 /* HeaderTableViewCell.xib in Resources */,
+				8DEB1A4A2C75C4A300699332 /* FoundRescueeTableViewCell.xib in Resources */,
 				8D04BE602C7328920001825F /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D04BE5D2C7328920001825F /* ViewController.swift in Sources */,
+				8DEB1A492C75C4A300699332 /* FoundRescueeTableViewCell.swift in Sources */,
 				8DAC849F2C7456A400564032 /* SupportCastTableViewCell.swift in Sources */,
 				8D04BE592C7328920001825F /* AppDelegate.swift in Sources */,
 				8D04BE6F2C732D2E0001825F /* RescuerHistoryTableViewCell.swift in Sources */,

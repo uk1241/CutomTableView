@@ -98,9 +98,19 @@
                             <constraint firstAttribute="trailing" secondItem="Zby-ep-Jiw" secondAttribute="trailing" constant="16" id="sHt-ua-K75"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEj-Fi-29h">
+                        <rect key="frame" x="12" y="50" width="22" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <color key="textColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="k4C-XP-CTw" secondAttribute="bottom" constant="5" id="3CW-kX-Bib"/>
+                    <constraint firstItem="k4C-XP-CTw" firstAttribute="leading" secondItem="BEj-Fi-29h" secondAttribute="trailing" constant="16" id="6pf-HV-y8m"/>
+                    <constraint firstAttribute="bottom" secondItem="BEj-Fi-29h" secondAttribute="bottom" constant="55" id="Wuh-ZN-gCt"/>
+                    <constraint firstItem="BEj-Fi-29h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ZBj-Kt-Ofk"/>
+                    <constraint firstItem="BEj-Fi-29h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="bUB-47-iLR"/>
                     <constraint firstItem="k4C-XP-CTw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="jVb-WZ-Q56"/>
                     <constraint firstAttribute="trailing" secondItem="k4C-XP-CTw" secondAttribute="trailing" constant="37" id="o7c-rA-OWG"/>
                     <constraint firstItem="k4C-XP-CTw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ocM-FL-8z6"/>
@@ -115,6 +125,7 @@
                 <outlet property="assigneName" destination="xxU-TD-zSp" id="xLm-Kh-4GC"/>
                 <outlet property="assigneRelation" destination="3YA-Tm-vCf" id="xF4-kc-8aN"/>
                 <outlet property="assigneStatusButton" destination="pbK-Kc-37j" id="gMY-vj-0z5"/>
+                <outlet property="assigneeNumberlabel" destination="BEj-Fi-29h" id="nL3-5m-hyw"/>
                 <outlet property="assignesBgView" destination="k4C-XP-CTw" id="s7m-hr-KFp"/>
                 <outlet property="footerView" destination="umc-ut-7cS" id="aAC-0t-74Z"/>
             </connections>

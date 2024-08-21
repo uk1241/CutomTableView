@@ -9,6 +9,8 @@ import UIKit
 
 class HeaderTableViewCell: UITableViewCell {
 
+    @IBOutlet var headerTitleLabel: UILabel!
+    @IBOutlet var hideAndShowDetailsButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
