@@ -26,7 +26,8 @@ class RescuerHistoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        messageLabel.numberOfLines = 0 
+        UpdateUi()
+        messageLabel.numberOfLines = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,4 +36,39 @@ class RescuerHistoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+extension RescuerHistoryTableViewCell
+{
+    func RescuerHistoryCollapsed()
+    {
+        messageLabel.isHidden = true
+        viewLoactionButton.isHidden = true
+        locationDistance.isHidden = true
+        addressLabel.isHidden = true
+        scannedDateAndTimeLabel.isHidden = true
+        message.isHidden = true
+        location.isHidden = true
+        scannedOn.isHidden = true
+        
+        // Trigger layout updates to adjust the cell's height
+          self.setNeedsLayout()
+          self.layoutIfNeeded()
+          
+          // If this cell is inside a table view, ensure the table view updates its layout
+          if let tableView = self.superview as? UITableView {
+              tableView.beginUpdates()
+              tableView.endUpdates()
+          }
+    }
+     func UpdateUi()
+    {
+        messageLabel.isHidden = false
+        viewLoactionButton.isHidden = false
+        locationDistance.isHidden = false
+        addressLabel.isHidden = false
+        scannedDateAndTimeLabel.isHidden = false
+        message.isHidden = false
+        location.isHidden = false
+        scannedOn.isHidden = false
+    }
 }

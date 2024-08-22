@@ -19,10 +19,16 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="currentRescuerImage" translatesAutoresizingMaskIntoConstraints="NO" id="OTs-Dn-OhC">
                         <rect key="frame" x="20" y="21" width="48" height="48"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Rescuer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRO-Xc-HQZ">
-                        <rect key="frame" x="78" y="46" width="112" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRO-Xc-HQZ">
+                        <rect key="frame" x="78" y="46" width="109" height="15"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Current Rescuer">
+                                <attributes>
+                                    <color key="NSColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="15" name="Gilroy-Regular"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V11-99-9Ry">
@@ -34,39 +40,50 @@
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="callButton"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVQ-8E-fj4">
-                        <rect key="frame" x="20" y="89" width="76.666666666666671" height="19"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVQ-8E-fj4">
+                        <rect key="frame" x="20" y="89" width="74" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19" id="BKu-yi-7kI"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                        <color key="textColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Message:">
+                                <attributes>
+                                    <color key="NSColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="17" name="Gilroy-SemiBold"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVi-lC-WBI">
-                        <rect key="frame" x="20" y="177" width="73.333333333333329" height="17"/>
+                        <rect key="frame" x="20" y="177" width="72.666666666666671" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="9Oy-yV-ANq"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Gilroy-SemiBold" family="Gilroy-SemiBold" pointSize="17"/>
                         <color key="textColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, I got your pet. He is safe with me and please check the given address to pick." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPi-CN-544">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPi-CN-544">
                         <rect key="frame" x="20" y="118" width="295" height="37"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="295" id="95c-9y-Nld"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Hi, I got your pet. He is safe with me and please check the given address to pick.">
+                                <attributes>
+                                    <font key="NSFont" size="15" name="Gilroy-Regular"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.8 Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uX3-kA-h14">
-                        <rect key="frame" x="20" y="208" width="72" height="17"/>
+                        <rect key="frame" x="20" y="208" width="66.333333333333329" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="MUU-CS-iKv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="Gilroy-SemiBold" family="Gilroy-SemiBold" pointSize="17"/>
                         <color key="textColor" red="0.63529411764705879" green="0.50980392156862742" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -75,26 +92,32 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="4fx-Oe-Ied"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="Gilroy-Regular" family="Gilroy-Regular" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanned on:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9US-ud-TUg">
-                        <rect key="frame" x="20" y="287" width="79" height="16"/>
+                        <rect key="frame" x="20" y="287" width="75.333333333333329" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="4dN-vv-pCk"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="Gilroy-SemiBold" family="Gilroy-SemiBold" pointSize="13"/>
                         <color key="textColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Henry Lucas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCt-59-HRO">
-                        <rect key="frame" x="78" y="27" width="99.666666666666686" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCt-59-HRO">
+                        <rect key="frame" x="78" y="27" width="95.666666666666686" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="F0B-fR-hvc"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                        <color key="textColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Henry Lucas">
+                                <attributes>
+                                    <color key="NSColor" red="0.27450980392156865" green="0.22745098039215686" blue="0.031372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="17" name="Gilroy-SemiBold"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeP-lm-AZ9">
@@ -102,13 +125,18 @@
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" image="View Location"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06/18/2023, Monday | 06:45 PM (EST)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13o-VO-d6e">
-                        <rect key="frame" x="20" y="307" width="233" height="13"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13o-VO-d6e">
+                        <rect key="frame" x="20.000000000000014" y="307" width="218.33333333333337" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="P2r-sD-Kz1"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
+                        <attributedString key="attributedText">
+                            <fragment content="06/18/2023, Monday | 06:45 PM (EST)">
+                                <attributes>
+                                    <font key="NSFont" size="13" name="Gilroy-Regular"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>

@@ -11,7 +11,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var tableview: UITableView!
     var cellHeights: [Int: CGFloat] = [0: 100, 1: 100] // Dictionary to track the heights of each section
-    var isSupportCastCollapsed: Bool = false // State variable to track the collapse state
+    var isSupportCastCollapsed: Bool = false // State variable to track the collapse state of Support Cast
+    var isCurrentResucerCollapsed: Bool = false // State variable to track the collapse state of CurrentRescuer
     override func viewDidLoad() {
         super.viewDidLoad()
         // Register the custom cell nib files with the table view
@@ -30,14 +31,35 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     // Return the number of rows in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case 0: //completed
             return 1
-        case 1:
-            return isSupportCastCollapsed ? 1 : 5
-        case 2:
-            return 1 // Number of rows in the Current Rescuer section
-        case 3:
-            return 2 // Number of rows in the Rescuer History section
+        case 1: //Header
+            return 1
+        case 2: //Support Cast
+            if isSupportCastCollapsed
+            {
+                // Return 1 row to ensure the section header is visible even when collapsed
+                return 1
+            }
+            else
+            {
+                return 4 // Number of rows in the Support Cast section
+            }
+        case 3: //Header
+            return 1 // Number of rows in the Rescuer History section
+        case 4: //current Rescuer
+            if isCurrentResucerCollapsed
+            {
+                return 1
+            }
+            else
+            {
+                return 1
+            }
+        case 5: //Header
+            return 1
+        case 6: //Rescuer History
+            return 2
         default:
             return 1 // Default number of rows if section is out of bounds
         }
@@ -46,22 +68,32 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     // Return the number of sections
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return 4 // Total number of sections
+        return 7 // Total number of sections
     }
     
     // Configure and return a cell for a given index path
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
+
         case 0:
             let FoundRescueeCell = tableView.dequeueReusableCell(withIdentifier: "FoundRescueeTableViewCell", for: indexPath) as! FoundRescueeTableViewCell
+            FoundRescueeCell.rescueeCompletedStatusButton.addTarget(self, action: #selector(terminatedAction(sender:)), for: .touchUpInside)
             return FoundRescueeCell
         case 1:
+            let SupportCastheaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+            SupportCastheaderView.hideAndShowDetailsButton.addTarget(self, action: #selector(hideBtnAction(sender:)), for: .touchUpInside)
+//            SupportCastheaderView.isHidden = false
+            return SupportCastheaderView
+        case 2:
             let supportCastCell = tableView.dequeueReusableCell(withIdentifier: "SupportCastTableViewCell", for: indexPath) as! SupportCastTableViewCell
             supportCastCell.assigneeNumberlabel.text = String(indexPath.row+1)
-            if isSupportCastCollapsed {
+            if isSupportCastCollapsed
+            {
                 // Show only the "Accepted" cell and hide others
                 supportCastCell.updateCellUi(assigneState: "Accepted", name: "Back Anthony", Relation: "Uncle")
-            } else {
+            }
+            else
+            {
                 switch indexPath.row {
                 case 0:
                     supportCastCell.updateCellUi(assigneState: "Reassigned", name: "Back Anthony", Relation: "Uncle")
@@ -76,14 +108,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             return supportCastCell
-            
-        case 2:
-            // Configure and return RescuerHistoryTableViewCell
-            let currentRescuerCell = tableView.dequeueReusableCell(withIdentifier: "RescuerHistoryTableViewCell", for: indexPath) as! RescuerHistoryTableViewCell
-            currentRescuerCell.messageLabel.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
-            return currentRescuerCell
         case 3:
-            // Configure and return RescuerHistoryTableViewCell with custom styling
+            let CurrentRescuerHeaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+            CurrentRescuerHeaderView.headerTitleLabel.text = "CurrentRescuer"
+            CurrentRescuerHeaderView.hideAndShowDetailsButton.addTarget(self, action: #selector(CurrentRescuerhideAction(sender:)), for: .touchUpInside)
+            return CurrentRescuerHeaderView
+        case 4:
+            let currentRescuerCell = tableView.dequeueReusableCell(withIdentifier: "RescuerHistoryTableViewCell", for: indexPath) as! RescuerHistoryTableViewCell
+            if isCurrentResucerCollapsed
+            {
+                currentRescuerCell.RescuerHistoryCollapsed()
+            }
+            else
+            {
+                currentRescuerCell.messageLabel.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..."
+                
+            }
+            return currentRescuerCell
+        case 5:
+            let RescuerHistoryHeaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+            RescuerHistoryHeaderView.headerTitleLabel.text = "Rescuer History"
+            return RescuerHistoryHeaderView
+        case 6:
             let rescuerHistoryCell = tableView.dequeueReusableCell(withIdentifier: "RescuerHistoryTableViewCell", for: indexPath) as! RescuerHistoryTableViewCell
             
             // Set text color for various labels
@@ -118,7 +164,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return UITableViewCell() // Return a default cell if section is out of bounds
         }
-  
+        
         
     }
     
@@ -135,33 +181,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    // Create and return a custom view for the header of each section
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    {// Configure the header view
-        switch section
-        {
-        case 1:
-            let SupportCastheaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
-            SupportCastheaderView.hideAndShowDetailsButton.addTarget(self, action: #selector(hideBtnAction(sender:)), for: .touchUpInside)
-            SupportCastheaderView.isHidden = false
-            return SupportCastheaderView
-        case 2:
-            let CurrentRescuerHeaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
-            CurrentRescuerHeaderView.headerTitleLabel.text = "CurrentRescuer"
-            return CurrentRescuerHeaderView
-        case 3:
-            let RescuerHistoryHeaderView = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
-            RescuerHistoryHeaderView.headerTitleLabel.text = "Rescuer History"
-            return RescuerHistoryHeaderView
-        default:
-            return UITableViewCell()
-        }
-    }
-    
-    
     // Return the height of each row
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat 
+    {
+        if indexPath.section == 0
+        {
+            return 354
+        }
+        else
+        {
+            return UITableView.automaticDimension
+        }
     }
 }
 
@@ -170,11 +200,43 @@ extension ViewController {
     @objc func hideBtnAction(sender: UIButton) {
         // Toggle the collapse state
         isSupportCastCollapsed.toggle()
-        
+        switch isSupportCastCollapsed
+        {
+        case true:
+            sender.setImage(UIImage(named: "show"), for: .normal)
+        case false:
+            sender.setImage(UIImage(named: "hide"), for: .normal)
+        }
         // Reload the Support Cast section (section 0)
-        tableview.reloadSections(IndexSet(integer: 0), with: .automatic)
+        tableview.reloadSections(IndexSet(integer: 2), with: .automatic)
     }
-    
+    @objc func terminatedAction(sender: UIButton)
+    {
+        // Determine the index path for the row containing the button
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        
+        // Get the cell instance from the table view
+        if let cell = tableview.cellForRow(at: indexPath) as? FoundRescueeTableViewCell
+        {
+            // Call the function on the cell
+            cell.terminatedRescuee()
+        }
+    }
+    @objc func CurrentRescuerhideAction(sender:UIButton!)
+    {
+        isCurrentResucerCollapsed.toggle()
+        switch isCurrentResucerCollapsed
+        {
+        case true:
+            sender.setImage(UIImage(named: "show"), for: .normal)
+        case false:
+            sender.setImage(UIImage(named: "hide"), for: .normal)
+        }
+        // Reload the Support Cast section (section 0)
+        tableview.reloadSections(IndexSet(integer: 4), with: .automatic)
+        tableview.beginUpdates()
+        tableview.endUpdates()
+    }
     // Toggle the height of the specified section when the button is tapped
     @objc func toggleSectionHeight(_ sender: UIButton) {
         let section = sender.tag

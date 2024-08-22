@@ -18,9 +18,9 @@ class SupportCastTableViewCell: UITableViewCell
     @IBOutlet var footerView: UIView!              // Footer view of the cell
     @IBOutlet var assignStatusLabel: UILabel!      // Label for displaying the assignment status
     @IBOutlet var assigneDistanceLabel: UILabel!   // Label for displaying the distance of the assignee
-    @IBOutlet var assigneStatusButton: UIButton!
-    @IBOutlet var assigneeNumberlabel: UILabel!
-    
+    @IBOutlet var assigneStatusButton: UIButton!   // Label for displaying the distance of the assignee
+    @IBOutlet var assigneeNumberlabel: UILabel!    // Label for displaying the distance of the assignee
+    @IBOutlet var acceptedSupportCastTick: UIImageView!
     override func awakeFromNib() 
     {
         super.awakeFromNib()
@@ -126,6 +126,7 @@ class SupportCastTableViewCell: UITableViewCell
         assignStatusLabel.textColor = UIColor().colorFromHexString("#56BC56")
         assignStatusLabel.isHidden = false
         assigneStatusButton.isHidden = true
+        acceptedSupportCastTick.isHidden = false
     }
 }
 
